@@ -1,0 +1,13 @@
+   name: Build Windows VST3
+   on: [push, workflow_dispatch]
+   jobs:
+     build:
+       runs-on: windows-latest
+       steps:
+         - uses: actions/checkout@v4
+         - run: cmake -B build
+         - run: cmake --build build --config Release --target Giverny_VST3
+         - uses: actions/upload-artifact@v4
+           with:
+             name: Giverny-VST3
+             path: build/Giverny_artefacts/Release/VST3/
